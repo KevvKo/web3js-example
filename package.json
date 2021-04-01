@@ -4,6 +4,7 @@
   "description": "web3js example ",
   "main": "index.js",
   "dependencies": {
+    "@alch/alchemy-web3": "^1.0.2",
     "@truffle/hdwallet-provider": "^1.2.2",
     "dotenv": "^8.2.0"
   },
