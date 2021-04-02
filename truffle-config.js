@@ -1,6 +1,6 @@
 require('dotenv').config();
 const HDWalletProvider = require("@truffle/hdwallet-provider");
-const { API_URL, MNEMONIC } = process.env;
+const { API_URL, MNEMONIC, PRIVATE_KEY } = process.env;
 
 module.exports = {
   networks: {
@@ -9,11 +9,11 @@ module.exports = {
       port: 7545,
       network_id: "*"
     },
-    ropsten: {
+    kovan: {
       provider: function() {
-        return new HDWalletProvider(MNEMONIC, API_URL)
+        return new HDWalletProvider([PRIVATE_KEY], API_URL)
       },
-      network_id: 3,
+      network_id: 42,
       gas: 4000000 //4M is the max
     }
   }
