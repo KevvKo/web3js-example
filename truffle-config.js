@@ -16,5 +16,19 @@ module.exports = {
       network_id: 42,
       gas: 4000000 //4M is the max
     }
+  },
+  compilers: {
+    solc: {
+      settings: {
+        optimizer: {
+          enabled: true,
+          runs: 200
+        }
+      }
+    }
+  },
+  plugins: ['truffle-plugin-verify'],
+  api_keys: {
+    etherscan: process.env.ETHERSCAN_API_KEY
   }
 };

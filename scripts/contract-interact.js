@@ -6,16 +6,17 @@ const PRIVATE_KEY = process.env.PRIVATE_KEY
 const { createAlchemyWeb3 } = require('@alch/alchemy-web3')
 const web3 = createAlchemyWeb3(API_URL)
 const contract = require('../build/contracts/HelloWorld.json')
-const contractAdress = '0x9995a8393c94396154e9da1d8c4597ffa23e70fa'
-const helloWorldContract = new web3.eth.Contract(contract.abi, contractAdress)
+const contractAddress = '0xCaAa32C4055d311AEfc2467E2b11701491544Ece'
+const helloWorldContract = new web3.eth.Contract(contract.abi, contractAddress)
 
 // FunctionS
 
 const main = async () => {
     const message = await helloWorldContract.methods.message().call()
-    console.log(`The message is: ${message}`)
+   console.log(`The message is: ${message}`)
 
-    await updateMessage("Bitch")
+    // await updateMessage("Bitch")
+
 }
 
 const updateMessage = async (newMessage) => {
@@ -23,9 +24,9 @@ const updateMessage = async (newMessage) => {
     const gasEstimate = await helloWorldContract.methods.update(newMessage).estimateGas()
 
     const tx = {
-        "chainId": 3,
+        "chainId": 42,
         'from': PUBLIC_KEY,
-        'to': contractAdress,
+        'to': contractAddress,
         'nonce': nonce,
         'gas': gasEstimate,
         'data': helloWorldContract.methods.update(newMessage).encodeABI()
@@ -42,8 +43,6 @@ const updateMessage = async (newMessage) => {
         console.log(`Promise failed: ${error}`)
     })
 }
-
-
 
 main()
 
